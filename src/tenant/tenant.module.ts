@@ -20,7 +20,7 @@ export const TENANT_CONNECTION = 'TENANT_CONNECTION';
       ],
       scope: Scope.REQUEST,
       useFactory: async (request, connection) => {
-        const tenant: Tenant = await connection.getRepository(Tenant).findOne(({ where: { host: request.headers.host } }));
+        const tenant: Tenant = await connection.getRepository(Tenant).findOne(({ where: { name: request.headers.name } }));
         return getConnection(tenant.name);
       }
     }
@@ -36,7 +36,7 @@ export class TenantModule {
     consumer
       .apply(async (req, res, next) => {
 
-        const tenant: Tenant = await this.connection.getRepository(Tenant).findOne(({ where: { host: req.headers.host } }));
+        const tenant: Tenant = await this.connection.getRepository(Tenant).findOne(({ where: { name: req.headers.name } }));
 
         if (!tenant) {
           throw new BadRequestException(
@@ -53,11 +53,11 @@ export class TenantModule {
           const createdConnection: Connection = await createConnection({
             name: tenant.name,
             type: "mysql",
-            host: "localhost",
+            host: tenant.host,
             port: 3306,
-            username: 'root',
-            password: '123456789',
-            database: tenant.name,
+            username: tenant.username,
+            password: tenant.password,
+            database: tenant.database,
             entities: [ 
               __dirname + '/../**/*.entity{.ts,.js}',
              ],
