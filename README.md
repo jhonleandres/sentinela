@@ -16,7 +16,11 @@
 - [ ] Gerenciamento de ACL
 - [ ] Cadastro de usuário
 - [ ] Cadastro de cliente
+- [ ] Financeiro
 - [ ] Fluxo de caixa
+- [ ] Estoque
+- [ ] Compras
+- [ ] Pedido
 - [ ] Cadastro de produtos
 - [ ] Controle Fiscal - NFE (Entrada e Saida), NFCE (Saida)
 - [ ] Controle Vendas
