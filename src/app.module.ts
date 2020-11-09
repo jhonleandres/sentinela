@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { TenantModule } from './tenant/tenant.module';
 import { ProductController } from './product/product.controller';
 import { ProductModule } from './product/product.module';
+import { CaixaModule } from './caixa/caixa.module';
 import * as ormconfig from '../ormconfig';
 
 
@@ -14,6 +15,7 @@ import * as ormconfig from '../ormconfig';
   imports: [TypeOrmModule.forRoot(ormconfig),
     TenantModule,
     ProductModule,
+    CaixaModule,
   ],
   controllers: [AppController, ProductController],
   providers: [AppService],

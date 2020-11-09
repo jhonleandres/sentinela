@@ -52,16 +52,16 @@ export class TenantModule {
 
           const createdConnection: Connection = await createConnection({
             name: tenant.name,
-            type: "mysql",
+            type: ( tenant.type as 'mysql' ) || 'mysql',
             host: tenant.host,
             port: 3306,
             username: tenant.username,
             password: tenant.password,
             database: tenant.database,
             entities: [ 
-              __dirname + '/../**/*.entity{.ts,.js}',
+              __dirname + '../**/*.entity{.ts,.js}',
              ],
-            // synchronize: true,
+            synchronize: false,
             // migrationsTableName: 'migration_tenant_',
             // migrations: ['src/migrations/system/*.ts'],
             // cli: {

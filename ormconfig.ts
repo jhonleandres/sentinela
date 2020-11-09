@@ -18,7 +18,7 @@ const config: ConnectionOptions = {
   username: 'root',
   password: '123456789',
   database: 'administrator',
-  entities: [ Tenant ],
+  entities: ['dist/**/*.entity{.ts,.js}'],
 
   // We are using migrations, synchronize should be set to false.
   synchronize: true,
@@ -26,15 +26,16 @@ const config: ConnectionOptions = {
   // Run migrations automatically,
   // you can disable this if you prefer running migration manually.
   migrationsRun: true,
-  logging: false,
+  logging: true,
   logger: 'file',
 
   // allow both start:prod and start:dev to use migrations
   // __dirname is either dist or src folder, meaning either
   // the compiled js in prod or the ts in dev
-  migrations: [__dirname + '/migrations/adm/*{.ts,.js}'],
+  migrations: [__dirname + '/migration/adm/*{.ts,.js}'],
   cli: {
-    migrationsDir: 'src/migrations',
+    entitiesDir: "src/modules",
+    migrationsDir: 'migration',
   },
 };
 
